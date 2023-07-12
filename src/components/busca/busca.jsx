@@ -1,7 +1,7 @@
-function Busca() {
+function Busca(props) {
   return (
     <>
-      <input type="text" placeholder="Busca por negócios" />
+      <input type="text" placeholder={props.texto} />
     </>
   );
 }

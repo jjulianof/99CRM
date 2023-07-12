@@ -1,17 +1,17 @@
 import Busca from "../../components/busca/busca";
 import Menu from "../../components/menu/menu";
-function Dashboard() {
+function Negocio() {
   return (
     <>
       <div className="container-fluid">
         <div className="row flex-nowrap">
           <div className="col-auto col-md3 col-xl-2 px-sm-2 px0">
-            <Menu page="dashboard" />
+            <Menu page="negocios" />
           </div>
 
           <div className="col py-3 me-3">
             <Busca texto="Busca por negócio" />
-            <h1>Dashboard....</h1>
+            <h1>Negócios....</h1>
           </div>
         </div>
       </div>
@@ -19,4 +19,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Negocio;
