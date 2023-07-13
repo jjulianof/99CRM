@@ -5,3 +5,11 @@ body {
   font-family: "Poppins";
   background-color: #f1f5f8;
 }
+
+select {
+  border: 0px;
+  background-color: #ffff;
+
+  cursor: pointer;
+  width: 100%;
+}

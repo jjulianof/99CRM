@@ -1,6 +1,7 @@
 import Busca from "../../components/busca/busca";
 import Menu from "../../components/menu/menu";
 import Indicador from "../../components/indicador/indicador";
+import Grafico from "../../components/grafico/grafico";
 
 function Dashboard() {
   return (
@@ -34,6 +35,10 @@ function Dashboard() {
                   valor="6 atividades"
                   rodape="R$ 3.150,00"
                 />
+              </div>
+
+              <div className="col-12 mt-4">
+                <Grafico titulo="Vendas Anual" chartType="Line" />
               </div>
             </div>
           </div>
