@@ -1,14 +1,6 @@
 import { Chart } from "react-google-charts";
 
 function Grafico(props) {
-  const dados = [
-    ["Mês", "Valor"],
-    ["01", 1000],
-    ["02", 1170],
-    ["03", 660],
-    ["04", 1030],
-  ];
-
   const options = {
     legend: props.legenda ? {} : { position: "none" },
   };
@@ -19,7 +11,7 @@ function Grafico(props) {
       <div className="card-body terxt-center">
         <Chart
           chartType={props.chartType}
-          data={dados}
+          data={props.dados}
           width="100%"
           height="350px"
           options={options}

@@ -6,7 +6,7 @@ function Negocio() {
       <div className="container-fluid">
         <div className="row flex-nowrap">
           <div className="col-auto col-md3 col-xl-2 px-sm-2 px0">
-            <Menu page="dashboard" />
+            <Menu page="negocios" />
           </div>
 
           <div className="col py-3 me-3">
