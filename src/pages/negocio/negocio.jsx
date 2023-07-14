@@ -1,6 +1,104 @@
 import Busca from "../../components/busca/busca";
 import Menu from "../../components/menu/menu";
+import DataTable from "react-data-table-component";
+import dados from "../../service/dados.json";
+
 function Negocio() {
+  /*
+  const [etapas, setEtapas] = useState([]);
+
+  const [etapa, setEtapa] = useState("");
+  const [qtd_reg_pagina, setQtdRegPagina] = useState(10);
+  const [dados, setDados] = useState([]);
+  const [total_registros, setTotalRegistros] = useState(0);
+*/
+  const columns = [
+    {
+      name: "Código",
+      selector: (row) => row.id_negocio,
+      sortable: true,
+      width: "120px",
+    },
+    {
+      name: "Descrição",
+      selector: (row) => row.descricao,
+      sortable: true,
+      compact: true,
+    },
+    {
+      name: "Etapa",
+      selector: (row) => row.etapa,
+      sortable: true,
+    },
+    {
+      name: "Empresa",
+      selector: (row) => (
+        <>
+          <p className="mb-1">{row.empresa}</p>
+          <p className="mb-1">Contato: {row.contato}</p>
+        </>
+      ),
+      sortable: true,
+      compact: true,
+    },
+    {
+      name: "Dados Contato",
+      selector: (row) => (
+        <>
+          <p className="mb-1">E-mail: {row.email}</p>
+          <p className="mb-1">Fone: {row.fone}</p>
+          <p className="mb-1">Tipo: {row.tipo_fone}</p>
+        </>
+      ),
+      sortable: true,
+    },
+    {
+      name: "Vl. Estimado",
+      selector: (row) => row.valor,
+      sortable: true,
+      right: true,
+      format: (row) =>
+        new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(row.valor),
+    },
+    {
+      cell: (row) => (
+        <>
+          <button
+            onClick={() => whatsApp(row.fone)}
+            className={
+              row.fone ? "btn btn-success" : "btn btn-success disabled"
+            }
+          >
+            <i className="bi bi-whatsapp"></i>
+          </button>
+          <button className="btn btn-primary ms-3">
+            <i className="bi bi-pencil-square"></i>
+          </button>
+          <button className="btn btn-danger ms-3">
+            <i className="bi bi-trash3-fill"></i>
+          </button>
+        </>
+      ),
+      width: "200px",
+      right: true,
+    },
+  ];
+
+  const paginationOptions = {
+    rowsPerPageText: "Registros por página",
+    rangeSeparatorText: "de",
+    selectAllRowsItem: true,
+    selectAllRowsItemText: "Todos",
+  };
+
+  function whatsApp(fone) {
+    const url = "https://web.whatsapp.com/send?phone=55" + fone;
+    window.open(url, "_blank", "noreferrer");
+  }
+
   return (
     <>
       <div className="container-fluid">
@@ -32,6 +130,14 @@ function Negocio() {
                   Novo Negócio
                 </button>
               </div>
+
+              <DataTable
+                columns={columns}
+                data={dados}
+                pagination={true}
+                paginationComponentOptions={paginationOptions}
+                noDataComponent={"Nenhum registro encontrado"}
+              />
             </div>
 
             <div className="row"></div>
