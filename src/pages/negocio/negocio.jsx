@@ -2,6 +2,9 @@ import Busca from "../../components/busca/busca";
 import Menu from "../../components/menu/menu";
 import DataTable from "react-data-table-component";
 import dados from "../../service/dados.json";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import NegocioCad from "../negocio-cad/negocio-cad";
 
 function Negocio() {
   /*
@@ -12,6 +15,7 @@ function Negocio() {
   const [dados, setDados] = useState([]);
   const [total_registros, setTotalRegistros] = useState(0);
 */
+
   const columns = [
     {
       name: "Código",
@@ -69,15 +73,23 @@ function Negocio() {
           <button
             onClick={() => whatsApp(row.fone)}
             className={
-              row.fone ? "btn btn-success" : "btn btn-success disabled"
+              row.tipo_fone == "c"
+                ? "btn btn-success"
+                : "btn btn-success disabled"
             }
           >
             <i className="bi bi-whatsapp"></i>
           </button>
-          <button className="btn btn-primary ms-3">
+          <button
+            onClick={() => Editar(row.id_negocio)}
+            className="btn btn-primary ms-3"
+          >
             <i className="bi bi-pencil-square"></i>
           </button>
-          <button className="btn btn-danger ms-3">
+          <button
+            onClick={() => Excluir(row.id_negocio)}
+            className="btn btn-danger ms-3"
+          >
             <i className="bi bi-trash3-fill"></i>
           </button>
         </>
@@ -99,8 +111,47 @@ function Negocio() {
     window.open(url, "_blank", "noreferrer");
   }
 
+  function Excluir(id) {
+    confirmAlert({
+      title: "Exclusão",
+      message: "Confrima a exclusão do negócio?",
+      buttons: [
+        {
+          label: "sim",
+          onClick: () => alert("Excluir registro id: " + id),
+        },
+        {
+          label: "Não",
+          onClick: () => {},
+        },
+      ],
+    });
+  }
+
+  function Novo() {
+    const event = new CustomEvent("openSidebar", {
+      detail: {
+        operacao: "new",
+      },
+    });
+
+    window.dispatchEvent(event);
+  }
+
+  function Editar(id) {
+    const event = new CustomEvent("openSidebar", {
+      detail: {
+        operacao: "edit",
+      },
+    });
+
+    window.dispatchEvent(event);
+  }
+
   return (
     <>
+      <NegocioCad />
+
       <div className="container-fluid">
         <div className="row flex-nowrap">
           <div className="col-auto col-md3 col-xl-2 px-sm-2 px0">
@@ -125,7 +176,7 @@ function Negocio() {
                   </div>
                 </div>
 
-                <button className="btn btn-primary ms-4">
+                <button onClick={Novo} className="btn btn-primary ms-4">
                   <i className="bi bi-plus-lg me-2" />
                   Novo Negócio
                 </button>

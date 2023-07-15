@@ -1,0 +1,9 @@
+.sidebar .footer {
+  height: 65px;
+}
+
+.sidebar .tela-cad {
+  height: calc(100% - 95px);
+  overflow: auto;
+  align-content: flex-start;
+}
